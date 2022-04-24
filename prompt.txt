@@ -1,0 +1,16 @@
+Create a node class.
+Create a queue class.
+
+Members:
+Node - a node that tracks the front of the queue.
+Node - a node that tracks the end of the queue.
+Count - indicates how many items are on the queue.
+
+Methods:
+Enqueue
+- Accepts a number and adds to the end of the queue.
+Dequeue
+- Returns a number from the front of the queue.
+- If the queuei s empty, emit an error indicating the queue is empty.
+IsEmpty
+- Returns a boolean indicating if the queue is empty.
