@@ -17,7 +17,7 @@ public:
   void enqueue();
   void dequeue();
   bool isEmpty();
-  void print();
+  void printCount(); 
   Queue(){
     front = NULL;
     rear = NULL;
@@ -27,16 +27,20 @@ public:
 
 int main() {
   Queue test; 
-  cout << test.isEmpty() << endl; 
+  test.dequeue(); // Should return that the queue is empty
+  cout << test.isEmpty() << endl; // Should return 1 for true
   test.enqueue();
-  cout << test.isEmpty() << endl; 
+  test.printCount(); // Should print 1 item in queue
+  cout << endl << test.isEmpty() << endl; 
   test.dequeue();
+  test.printCount(); 
   test.enqueue();
   test.enqueue();
   test.enqueue();
   test.enqueue();
   test.dequeue();
-  cout << test.isEmpty() << endl;   
+  test.printCount(); // Should print 3 items in queue
+  cout << endl << test.isEmpty(); // Should 0 print false.
 }
 
 void Queue::enqueue(){
@@ -53,19 +57,20 @@ void Queue::enqueue(){
   rear->next = temp;
   }
   rear = temp;
-  count++;
+  this->count++;
 }
 
 void Queue::dequeue(){
   Node* temp = new Node;
   if(front == NULL){
-  cout<<"\nQueue is Emtpty\n";  
+  cout<<"\nQueue is Empty\n";  
   }
   else{
   temp = front;
   front = front->next;
   cout<<"The data Dequeued is "<<temp->data << "\n";
   delete temp;
+  this->count--;
   }
 }
 
@@ -77,12 +82,29 @@ bool Queue::isEmpty(){
     return false; 
   }
 }
-
-void Queue::print(){
-  Node* temp = new Node(); 
-  temp = front; 
-  while(temp->next != NULL){
-    cout << temp->data << " ";
-    temp->next = temp; 
-  }
+void Queue::printCount(){
+  cout << "\n" << this->count << " items are in the queue\n"; 
 }
+
+//Output from main
+/* 
+Queue is Empty
+1
+Enter the data to enqueue: 10
+
+1 items are in the queue
+
+0
+The data Dequeued is 10
+
+0 items are in the queue
+Enter the data to enqueue: 10
+Enter the data to enqueue: 12
+Enter the data to enqueue: 14
+Enter the data to enqueue: 16
+The data Dequeued is 10
+
+3 items are in the queue
+
+0
+*/
